@@ -1,0 +1,123 @@
+* {
+    /* margin: 0; */
+    padding: 0;
+}
+
+body {
+    background-image: url(Assests/wallaper.jpg);
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.taskbar-box {
+    position: fixed;
+    bottom: 30px;
+    left: 30vw;
+}
+
+.taskbar {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 70px;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.314), 0 0 18px 3px rgba(0, 0, 0, .3);
+    border-radius: 20px;
+    padding-bottom: 5px;
+}
+
+.apps {
+    display: flex;
+    gap: 25px;
+    padding-left: 5px;
+    padding-right: 10px;
+    align-items: center;
+    width: auto;
+    height: 100%;
+}
+
+.apps img {
+    user-select: none;
+    cursor: pointer;
+}
+
+.main_box {
+    width: 95%;
+    height: 80vh;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vw;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.header button {
+    cursor: pointer;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.weekdays,
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.weekdays div {
+    font-weight: bold;
+    padding: 10px 0;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.days div {
+    padding: 15px 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.days div:hover {
+    background: #eee;
+}
+
+.today {
+    color: #fff;
+    font-weight: bold;
+}
+
+#calendar_box {
+    width: 300px;
+    height: 350px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.314), 0 0 18px 3px rgba(0, 0, 0, .3);
+    transition: all 0.3s ease-in-out;
+}
+
+.dot {
+    position: absolute;
+    width: 25px;
+    height: 5px;
+    border-radius: 5px;
+    bottom: 6px;
+    background-color: rgb(251, 47, 47);
+    margin-left: 15px;
+    transition: all 0.3s ease-in-out;
+}
