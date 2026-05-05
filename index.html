@@ -11,7 +11,7 @@
 
 <body>
     <div class="main">
-        <div class="main_box">
+        <div class="main_box" style="display: flex;">
             <div id="calendar_box">
                 <div class="header">
                     <button id="prevBtn">Prev</button>
@@ -28,6 +28,29 @@
                     <div>Sat</div>
                 </div>
                 <div class="days" id="daysContainer"></div>
+            </div>
+            <div class="container">
+                <img src="hambergur.svg" class="hambergur" alt="" id="hambergur">
+                <div class="tabs-section" id="tabs-section">
+                    <div class="tabs-header">
+                        <input type="text" id="tabInput" placeholder="New tab...">
+                        <svg id="addTabBtn" viewBox="0 0 24 24">
+                            <path d="M12 5v14m-7-7h14" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="tabs" id="tabs"></div>
+                </div>
+
+                <div class="tasks-section">
+                    <div class="task-input">
+                        <div class="task-input-row">
+                            <input type="text" id="taskText" placeholder="Write a task...">
+                            <button class="add-btn" id="addTaskBtn">Add</button>
+                        </div>
+                        <input type="datetime-local" id="taskDate">
+                    </div>
+                    <div class="tasks" id="tasks"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -46,32 +69,33 @@
 
                 <button onclick="clock()" style="background: none; border: none; cursor: pointer;"><img class="clock"
                         src="Assests/clock.png" alt="" width="50">
-                        <div class="clock_dot dot"></div>
+                    <div class="clock_dot dot"></div>
                 </button>
 
                 <button onclick="note()" style="background: none; border: none; cursor: pointer;"><img class="To_do"
                         src="Assests/note.png" alt="" width="50">
-                        <div class="note_dot dot"></div>
+                    <div class="note_dot dot"></div>
                 </button>
 
-                <button onclick="img_converter()" style="background: none; border: none; cursor: pointer;"><img class="To_do"
-                        src="Assests/img_converter.png" alt="" width="60">
-                        <div class="img_converter_dot dot"></div>
+                <button onclick="img_converter()" style="background: none; border: none; cursor: pointer;"><img
+                        class="To_do" src="Assests/img_converter.png" alt="" width="60">
+                    <div class="img_converter_dot dot"></div>
                 </button>
 
-                <button onclick="net_speed_test()" style="background: none; border: none; cursor: pointer;"><img class="To_do"
-                        src="Assests/net_speed_test.png" alt="" width="50">
-                        <div class="net_speed_test_dot dot"></div>
+                <button onclick="net_speed_test()" style="background: none; border: none; cursor: pointer;"><img
+                        class="To_do" src="Assests/net_speed_test.png" alt="" width="50">
+                    <div class="net_speed_test_dot dot"></div>
                 </button>
 
-                <button onclick="password_strenght_checker()" style="background: none; border: none; cursor: pointer;"><img class="To_do"
+                <button onclick="password_strenght_checker()"
+                    style="background: none; border: none; cursor: pointer;"><img class="To_do"
                         src="Assests/password_strenght_checker.png" alt="" width="45">
-                        <div class="password_strenght_checker_dot dot"></div>
+                    <div class="password_strenght_checker_dot dot"></div>
                 </button>
 
                 <button onclick="timezone()" style="background: none; border: none; cursor: pointer;"><img class="To_do"
                         src="Assests/timezone.png" alt="" width="50">
-                        <div class="timezone_dot dot"></div>
+                    <div class="timezone_dot dot"></div>
                 </button>
             </div>
         </div>
