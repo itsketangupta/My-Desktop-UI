@@ -9,10 +9,14 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.taskbar_container {
+    position: absolute;
+    bottom: 20px;
+}
+
 .taskbar-box {
-    position: fixed;
-    bottom: 30px;
-    left: 23vw;
+    display: flex;
+    justify-content: center;
 }
 
 .taskbar {
@@ -115,7 +119,25 @@ body {
 #clock {
     width: 300px;
     height: 140px;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    padding: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.314), 0 0 18px 3px rgba(0, 0, 0, .3);
+    transition: all 0.5s ease-in-out;
+}
+
+#search-bar p {
+    width: 280px;
+    display: flex;
+    justify-content: center;
+}
+
+#search-bar {
+    width: 300px;
+    height: 140px;
     border-radius: 20px;
     padding: 20px;
     align-items: center;
@@ -149,10 +171,28 @@ body {
     box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.314), 0 0 18px 3px rgba(0, 0, 0, .3);
     padding: 2rem;
     border-radius: 20px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     width: 300px;
     height: 326px;
     transition: all 0.5s ease-in-out;
+}
+
+#taskList li {
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #5c5c5c6d;
+}
+
+#taskList {
+    overflow: auto;
+    height: 230px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#taskList::-webkit-scrollbar {
+    display: none;
 }
 
 .input-section {
@@ -179,7 +219,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.input-section button:hover {
     background-color: #218838;
 }
 
@@ -219,4 +259,14 @@ li {
 
 #coln {
     animation: blink 0.5s infinite;
+}
+
+@media screen and (max-width: 1257px) {
+
+    #calendar_box,
+    #clock,
+    #search-bar,
+    #todo_container {
+        max-width: 300px;
+    }
 }

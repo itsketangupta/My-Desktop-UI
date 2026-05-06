@@ -17,7 +17,6 @@ function renderCalendar() {
     const lastDay = new Date(year, month + 1, 0).getDate();
     const today = new Date();
 
-    // 1. Fill empty slots for previous month's trailing days
     for (let x = firstDayIndex; x > 0; x--) {
         const emptyDiv = document.createElement('div');
         emptyDiv.classList.add('empty');
@@ -95,6 +94,21 @@ function clock() {
     }
 }
 
+function dictionary() {
+    let box = document.getElementById("dictionary");
+    const div = document.querySelector('.note_dot');
+
+    if (!isChanged) {
+        box.style.display = "none";
+        div.classList.remove('dot');
+        isChanged = true;
+    } else {
+        box.style.display = "block";
+        div.classList.add('dot');
+        isChanged = false;
+    }
+}
+
 function addTask() {
     const input = document.getElementById('taskInput');
     const taskList = document.getElementById('taskList');
@@ -114,11 +128,9 @@ function addTask() {
         taskList.removeChild(li);
     };
 
-    // Append delete button to li, and li to list
     li.appendChild(deleteBtn);
     taskList.appendChild(li);
 
-    // Clear input field
     input.value = "";
 }
 
@@ -173,3 +185,31 @@ function updateTime() {
 updateTime();
 
 setInterval(updateTime, 1000);
+
+document.getElementById("search").addEventListener("click", async () => {
+    let word = document.getElementById("word").value.trim();
+    if (!word) return;
+
+    try {
+        let mean = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+        let data = await mean.json();
+
+        let meaningData = data[0]?.meanings[0];
+        if (!meaningData) {
+            document.getElementById("result").innerText = "Not found";
+            return;
+        }
+
+        let partOfSpeech = meaningData.partOfSpeech || "Unknown";
+        let definition = meaningData.definitions[0]?.definition || "Not found";
+        let example = meaningData.definitions[0]?.example || "No example available";
+
+        document.getElementById("result").innerHTML = `
+        <b>Meaning</b> ${definition}<br>
+        <b>Part of Speech:</b> ${partOfSpeech}<br>
+        <b>Example:</b> <p>${example}</p>
+    `;
+    } catch (err) {
+        document.getElementById("result").innerText = "Use correct word";
+    }
+});
