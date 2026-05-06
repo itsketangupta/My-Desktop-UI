@@ -7,10 +7,16 @@ body {
     background-image: url(Assests/wallaper.jpg);
     color: #ffffff;
     font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    max-height: 100vh;
 }
 
 .taskbar_container {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
 }
 
@@ -48,6 +54,7 @@ body {
     width: 95%;
     height: 80vh;
 }
+
 
 .main {
     display: flex;
@@ -187,11 +194,14 @@ body {
 #taskList {
     overflow: auto;
     height: 230px;
+}
+
+* {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
-#taskList::-webkit-scrollbar {
+*::-webkit-scrollbar {
     display: none;
 }
 
@@ -261,12 +271,76 @@ li {
     animation: blink 0.5s infinite;
 }
 
-@media screen and (max-width: 1257px) {
+.one_r {
+    display: flex;
+    gap: 70px;
+}
 
-    #calendar_box,
-    #clock,
-    #search-bar,
-    #todo_container {
-        max-width: 300px;
+@media screen and (max-width: 1242px) {
+
+    .one_r {
+        display: flex;
     }
+
+    .main_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding-bottom: 300px;
+    }
+}
+
+.calculator {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 300px;
+}
+
+.calculator .display {
+    width: 95%;
+    height: 60px;
+    border: none;
+    outline: none;
+    text-align: right;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.calculator .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.calculator button {
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.equal {
+    grid-column: span 2;
+    background: #00c6ff;
+    color: black;
+}
+
+.clear {
+    background: #ff4d4d;
 }

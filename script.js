@@ -213,3 +213,21 @@ document.getElementById("search").addEventListener("click", async () => {
         document.getElementById("result").innerText = "Use correct word";
     }
 });
+
+const display = document.getElementById("display");
+
+function append(value) {
+    display.value += value;
+}
+
+function clearDisplay() {
+    display.value = "";
+}
+
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch {
+        display.value = "Error";
+    }
+}

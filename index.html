@@ -4,67 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Widgets Space</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Assests/favicon.png" type="image/x-icon">
     <script src="script.js" defer></script>
 </head>
 
 <body>
     <div class="main">
-        <div class="main_box" style="display: flex; gap: 70px;">
-            <div id="calendar_box">
-                <div class="header">
-                    <button id="prevBtn">Prev</button>
-                    <h2 id="monthDisplay"></h2>
-                    <button id="nextBtn">Next</button>
-                </div>
-                <div class="weekdays">
-                    <div>Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
-                </div>
-                <div class="days" id="daysContainer"></div>
-            </div>
-            <div id="todo_container">
-                <h1>To-Do List</h1>
-                <div class="input-section">
-                    <input type="text" id="taskInput" placeholder="Add a new task...">
-                    <button onclick="addTask()">Add</button>
-                </div>
-                <ul id="taskList"></ul>
-            </div>
-            <div class="two_in_one">
-                <div id="clock">
-                    <div class="time_box">
-                        <div id="time" style="font-size: 60px; display: flex; justify-content: center;">
-                            <div id="hr"></div>
-                            <div id="coln">:</div>
-                            <div id="min"></div>
+        <div class="main_box" style="display: flex; gap: 70px; flex-direction: column;">
+            <div class="upper" style="display: flex;">
+                <div class="one_r">
+                    <div id="calendar_box">
+                        <div class="header">
+                            <button id="prevBtn" style="user-select: none;">Prev</button>
+                            <h2 id="monthDisplay" style="user-select: none;"></h2>
+                            <button id="nextBtn" style="user-select: none;">Next</button>
                         </div>
-                        <div class="day_time"
-                            style="display: flex; gap: 10px; justify-content: center; font-size: 20px;">
-                            <div id="day">
+                        <div class="weekdays" style="user-select: none;">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="days" id="daysContainer"></div>
+                    </div>
+                    <div id="todo_container">
+                        <h1 style="user-select: none;">To-Do List</h1>
+                        <div class="input-section">
+                            <input type="text" id="taskInput" placeholder="Add a new task...">
+                            <button onclick="addTask()">Add</button>
+                        </div>
+                        <ul id="taskList"></ul>
+                    </div>
+                </div>
+            
+                <div class="two_in_one" style="margin-left: 70px;">
+                    <div id="clock" style="user-select: none;">
+                        <div class="time_box">
+                            <div id="time" style="font-size: 60px; display: flex; justify-content: center;">
+                                <div id="hr"></div>
+                                <div id="coln">:</div>
+                                <div id="min"></div>
                             </div>
-                            <div id="date"></div>
+                            <div class="day_time"
+                                style="display: flex; gap: 10px; justify-content: center; font-size: 20px;">
+                                <div id="day">
+                                </div>
+                                <div id="date"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dictionary">
+                        <div id="search-bar" style="display: flex; flex-direction: column;">
+                            <div class="search_bar"
+                                style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; margin-top: -100px;">
+                                <input id="word" type="text" placeholder="Search a word" />
+                                <span class="search-icon" id="search">
+                                    <button>Search</button>
+                                </span>
+                            </div>
+                            <div id="result" style="position: absolute; margin-bottom: -50px;">
+                                Search Your word...
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div id="dictionary">
-                    <div id="search-bar" style="display: flex; flex-direction: column;">
-                        <div class="search_bar"
-                            style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; margin-top: -100px;">
-                            <input id="word" type="text" placeholder="Search a word" />
-                            <span class="search-icon" id="search">
-                                <button>Search</button>
-                            </span>
-                        </div>
-                        <div id="result" style="position: absolute; margin-bottom: -50px;">
-                            Search Your word...
-                        </div>
+            </div>
+            <div class="lower">
+                <div class="calculator">
+                    <input type="text" id="display" class="display" disabled>
+
+                    <div class="buttons">
+                        <button onclick="clearDisplay()" class="clear">C</button>
+                        <button onclick="append('/')">/</button>
+                        <button onclick="append('*')">*</button>
+                        <button onclick="append('-')">-</button>
+
+                        <button onclick="append('7')">7</button>
+                        <button onclick="append('8')">8</button>
+                        <button onclick="append('9')">9</button>
+                        <button onclick="append('+')">+</button>
+
+                        <button onclick="append('4')">4</button>
+                        <button onclick="append('5')">5</button>
+                        <button onclick="append('6')">6</button>
+                        <button onclick="calculate()">=</button>
+
+                        <button onclick="append('1')">1</button>
+                        <button onclick="append('2')">2</button>
+                        <button onclick="append('3')">3</button>
+                        <button onclick="append('.')">.</button>
+
+                        <button onclick="append('0')" class="equal">0</button>
                     </div>
                 </div>
             </div>
@@ -93,25 +128,15 @@
                             <div class="note_dot dot"></div>
                         </button>
 
-                        <button onclick="net_speed_test()" style="background: none; border: none; cursor: pointer;"><img
-                                class="To_do" src="Assests/net_speed_test.png" alt="" width="50">
-                            <div class="net_speed_test_dot dot"></div>
-                        </button>
-
-                        <button onclick="password_strenght_checker()"
-                            style="background: none; border: none; cursor: pointer;"><img class="To_do"
-                                src="Assests/password_strenght_checker.png" alt="" width="45">
-                            <div class="password_strenght_checker_dot dot"></div>
-                        </button>
-
-                        <button onclick="timezone()" style="background: none; border: none; cursor: pointer;"><img
-                                class="To_do" src="Assests/timezone.png" alt="" width="50">
-                            <div class="timezone_dot dot"></div>
+                        <button onclick="calculator()" style="background: none; border: none; cursor: pointer;"><img
+                                class="To_do" src="Assests/calculator.png" alt="" width="60">
+                            <div class="calculator_dot dot"></div>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 </body>
 
