@@ -65,143 +65,111 @@ function calender() {
     }
 }
 
-let state = JSON.parse(localStorage.getItem("todo_tabs")) || { tabs: [], active: null };
+function To_Do() {
+    let box = document.getElementById("todo_container");
+    const div = document.querySelector('.To_do_dot');
 
-function save() {
-    localStorage.setItem("todo_tabs", JSON.stringify(state));
-}
-
-function renderTabs() {
-    const tabsDiv = document.getElementById("tabs");
-    tabsDiv.innerHTML = "";
-    state.tabs.forEach((t, i) => {
-        const div = document.createElement("div");
-        div.className = "tab" + (t.name === state.active ? " active" : "");
-
-        const closeSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        closeSvg.setAttribute("viewBox", "0 0 24 24");
-        closeSvg.innerHTML = `<path d="M18 6L6 18M6 6l12 12" stroke="#f87171" stroke-width="5" stroke-linecap="round"/>`;
-        closeSvg.onclick = (e) => {
-            e.stopPropagation();
-            deleteTab(i);
-        };
-
-        const nameDiv = document.createElement("div");
-        nameDiv.className = "tab-name";
-        nameDiv.textContent = t.name;
-        nameDiv.onclick = () => {
-            state.active = t.name;
-            save();
-            render();
-        };
-
-        div.appendChild(closeSvg);
-        div.appendChild(nameDiv);
-        tabsDiv.appendChild(div);
-    });
-}
-
-function renderTasks() {
-    const tasksDiv = document.getElementById("tasks");
-    tasksDiv.innerHTML = "";
-    const tab = state.tabs.find(t => t.name === state.active);
-    if (!tab) return;
-    tab.tasks.forEach((task, i) => {
-        const div = document.createElement("div");
-        div.className = "task" + (task.done ? " completed" : "");
-        div.innerHTML = `
-      <div class="task-info">
-        <div class="task-text">${task.text}</div>
-        ${task.time ? `<small>${task.time}</small>` : ""}
-      </div>
-      <div class="right">
-        <input type="checkbox" class="checkbox" ${task.done ? "checked" : ""} onchange="toggleDone(${i})">
-        <button class="delete-btn" onclick="deleteTask(${i})">×</button>
-      </div>
-    `;
-        tasksDiv.appendChild(div);
-    });
-}
-
-function render() {
-    renderTabs();
-    renderTasks();
-}
-
-function addTab() {
-    const name = document.getElementById("tabInput").value.trim();
-    if (!name) return;
-    if (state.tabs.some(t => t.name === name)) return;
-    state.tabs.push({ name, tasks: [] });
-    state.active = name;
-    document.getElementById("tabInput").value = "";
-    save();
-    render();
-}
-
-function deleteTab(index) {
-    const deleted = state.tabs[index];
-    state.tabs.splice(index, 1);
-    if (state.active === deleted.name) {
-        state.active = state.tabs[0]?.name || null;
+    if (!isChanged) {
+        box.style.display = "none";
+        div.classList.remove('dot');
+        isChanged = true;
+    } else {
+        box.style.display = "block";
+        div.classList.add('dot');
+        isChanged = false;
     }
-    save();
-    render();
 }
 
-document.getElementById("addTabBtn").onclick = addTab;
-document.getElementById("tabInput").addEventListener("keypress", e => {
-    if (e.key === "Enter") addTab();
-});
+function clock() {
+    let box = document.getElementById("clock");
+    const div = document.querySelector('.clock_dot');
+
+    if (!isChanged) {
+        box.style.display = "none";
+        div.classList.remove('dot');
+        isChanged = true;
+    } else {
+        box.style.display = "block";
+        div.classList.add('dot');
+        isChanged = false;
+    }
+}
 
 function addTask() {
-    const text = document.getElementById("taskText").value.trim();
-    const time = document.getElementById("taskDate").value;
-    if (!text) return;
-    const tab = state.tabs.find(t => t.name === state.active);
-    if (!tab) return;
-    tab.tasks.push({ text, time, done: false });
-    document.getElementById("taskText").value = "";
-    document.getElementById("taskDate").value = "";
-    save();
-    render();
-}
+    const input = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
 
-document.getElementById("addTaskBtn").onclick = addTask;
-document.getElementById("taskText").addEventListener("keypress", e => {
-    if (e.key === "Enter") addTask();
-});
-
-function toggleDone(index) {
-    const tab = state.tabs.find(t => t.name === state.active);
-    if (!tab) return;
-    tab.tasks[index].done = !tab.tasks[index].done;
-    save();
-    render();
-}
-
-function deleteTask(index) {
-    const tab = state.tabs.find(t => t.name === state.active);
-    if (!tab) return;
-    tab.tasks.splice(index, 1);
-    save();
-    render();
-}
-
-render();
-
-const tabs = document.getElementById('tabs-section');
-const btn = document.getElementById('hambergur');
-
-let moved = false;
-
-btn.addEventListener('click', () => {
-    if (moved) {
-        tabs.style.transform = 'translateX(-300px)';
-        btn.src = 'hambergur.svg';
-    } else {
-        tabs.style.transform = 'translateX(0)';
-        btn.src = 'close.svg';
+    if (input.value.trim() === "") {
+        alert("Please enter a task!");
+        return;
     }
-    moved = !moved;
-});
+
+    const li = document.createElement('li');
+    li.textContent = input.value;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.onclick = function () {
+        taskList.removeChild(li);
+    };
+
+    // Append delete button to li, and li to list
+    li.appendChild(deleteBtn);
+    taskList.appendChild(li);
+
+    // Clear input field
+    input.value = "";
+}
+
+function updateTime() {
+    const now = new Date();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    const numericHours = hours;
+    let date = now.getDate();
+    let month = now.getMonth() + 1;
+    let year = now.getFullYear();
+    let dayOfWeek = now.getDay();
+
+
+    if (hours < 10) hours = "0" + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+
+    let greeting;
+    if (numericHours < 12) {
+        greeting = "Good Morning";
+    } else if (numericHours < 17) {
+        greeting = "Good Afternoon";
+    } else {
+        greeting = "Good Evening";
+    }
+
+    const shiftEl = document.querySelector(".shift");
+    if (shiftEl) shiftEl.textContent = greeting;
+
+
+    if (dayOfWeek == 0) { dayOfWeek = "Sun" };
+    if (dayOfWeek == 1) { dayOfWeek = "Mon" };
+    if (dayOfWeek == 2) { dayOfWeek = "Tue" };
+    if (dayOfWeek == 3) { dayOfWeek = "Wed" };
+    if (dayOfWeek == 4) { dayOfWeek = "Thur" };
+    if (dayOfWeek == 5) { dayOfWeek = "Fri" };
+    if (dayOfWeek == 6) { dayOfWeek = "Sat" };
+
+
+    const hrEL = document.getElementById("hr");
+    const minEL = document.getElementById("min");
+    const dayEl = document.getElementById("day");
+    const dateEl = document.getElementById("date");
+
+    if (dateEl) dateEl.textContent = `${date}-${month}-${year}`;
+    if (hrEL) hrEL.textContent = `${hours}`;
+    if (minEL) minEL.textContent = `${minutes}`;
+    if (dayEl) dayEl.textContent = `${dayOfWeek}`;
+}
+
+updateTime();
+
+setInterval(updateTime, 1000);

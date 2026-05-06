@@ -11,7 +11,7 @@
 
 <body>
     <div class="main">
-        <div class="main_box" style="display: flex;">
+        <div class="main_box" style="display: flex; gap: 70px;">
             <div id="calendar_box">
                 <div class="header">
                     <button id="prevBtn">Prev</button>
@@ -29,77 +29,76 @@
                 </div>
                 <div class="days" id="daysContainer"></div>
             </div>
-            <div class="container">
-                <img src="hambergur.svg" class="hambergur" alt="" id="hambergur">
-                <div class="tabs-section" id="tabs-section">
-                    <div class="tabs-header">
-                        <input type="text" id="tabInput" placeholder="New tab...">
-                        <svg id="addTabBtn" viewBox="0 0 24 24">
-                            <path d="M12 5v14m-7-7h14" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <div class="tabs" id="tabs"></div>
+            <div id="todo_container">
+                <h1>To-Do List</h1>
+                <div class="input-section">
+                    <input type="text" id="taskInput" placeholder="Add a new task...">
+                    <button onclick="addTask()">Add</button>
                 </div>
-
-                <div class="tasks-section">
-                    <div class="task-input">
-                        <div class="task-input-row">
-                            <input type="text" id="taskText" placeholder="Write a task...">
-                            <button class="add-btn" id="addTaskBtn">Add</button>
+                <ul id="taskList"></ul>
+            </div>
+            <div id="clock">
+                <div class="time_box">
+                    <div id="time" style="font-size: 60px; display: flex; justify-content: center;">
+                        <div id="hr"></div>
+                        <div id="coln">:</div>
+                        <div id="min"></div>
+                    </div>
+                    <div class="day_time" style="display: flex; gap: 10px; justify-content: center; font-size: 20px;">
+                        <div id="day">
                         </div>
-                        <input type="datetime-local" id="taskDate">
+                        <div id="date"></div>
                     </div>
-                    <div class="tasks" id="tasks"></div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="taskbar-box">
+            <div class="taskbar">
+                <div class="apps">
+                    <button onclick="calender()" style="background: none; border: none; cursor: pointer;">
+                        <img class="calendar" src="Assests/calendar.png" alt="" width="60">
+                        <div class="calendar_dot dot"></div>
+                    </button>
+
+                    <button onclick="To_Do()" style="background: none; border: none; cursor: pointer;">
+                        <img class="To_do" src="Assests/To_do.png" alt="" width="50">
+                        <div class="To_do_dot dot"></div>
+                    </button>
+
+                    <button onclick="clock()" style="background: none; border: none; cursor: pointer;"><img
+                            class="clock" src="Assests/clock.png" alt="" width="50">
+                        <div class="clock_dot dot"></div>
+                    </button>
+
+                    <button onclick="dictionary()" style="background: none; border: none; cursor: pointer;"><img
+                            class="To_do" src="Assests/note.png" alt="" width="50">
+                        <div class="note_dot dot"></div>
+                    </button>
+
+                    <button onclick="img_converter()" style="background: none; border: none; cursor: pointer;"><img
+                            class="To_do" src="Assests/img_converter.png" alt="" width="60">
+                        <div class="img_converter_dot dot"></div>
+                    </button>
+
+                    <button onclick="net_speed_test()" style="background: none; border: none; cursor: pointer;"><img
+                            class="To_do" src="Assests/net_speed_test.png" alt="" width="50">
+                        <div class="net_speed_test_dot dot"></div>
+                    </button>
+
+                    <button onclick="password_strenght_checker()"
+                        style="background: none; border: none; cursor: pointer;"><img class="To_do"
+                            src="Assests/password_strenght_checker.png" alt="" width="45">
+                        <div class="password_strenght_checker_dot dot"></div>
+                    </button>
+
+                    <button onclick="timezone()" style="background: none; border: none; cursor: pointer;"><img
+                            class="To_do" src="Assests/timezone.png" alt="" width="50">
+                        <div class="timezone_dot dot"></div>
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="taskbar-box">
-        <div class="taskbar">
-            <div class="apps">
-                <button onclick="calender()" style="background: none; border: none; cursor: pointer;">
-                    <img class="calendar" src="Assests/calendar.png" alt="" width="60">
-                    <div class="calendar_dot dot"></div>
-                </button>
-
-                <button onclick="To_do()" style="background: none; border: none; cursor: pointer;">
-                    <img class="To_do" src="Assests/To_do.png" alt="" width="50">
-                    <div class="To_do_dot dot"></div>
-                </button>
-
-                <button onclick="clock()" style="background: none; border: none; cursor: pointer;"><img class="clock"
-                        src="Assests/clock.png" alt="" width="50">
-                    <div class="clock_dot dot"></div>
-                </button>
-
-                <button onclick="note()" style="background: none; border: none; cursor: pointer;"><img class="To_do"
-                        src="Assests/note.png" alt="" width="50">
-                    <div class="note_dot dot"></div>
-                </button>
-
-                <button onclick="img_converter()" style="background: none; border: none; cursor: pointer;"><img
-                        class="To_do" src="Assests/img_converter.png" alt="" width="60">
-                    <div class="img_converter_dot dot"></div>
-                </button>
-
-                <button onclick="net_speed_test()" style="background: none; border: none; cursor: pointer;"><img
-                        class="To_do" src="Assests/net_speed_test.png" alt="" width="50">
-                    <div class="net_speed_test_dot dot"></div>
-                </button>
-
-                <button onclick="password_strenght_checker()"
-                    style="background: none; border: none; cursor: pointer;"><img class="To_do"
-                        src="Assests/password_strenght_checker.png" alt="" width="45">
-                    <div class="password_strenght_checker_dot dot"></div>
-                </button>
-
-                <button onclick="timezone()" style="background: none; border: none; cursor: pointer;"><img class="To_do"
-                        src="Assests/timezone.png" alt="" width="50">
-                    <div class="timezone_dot dot"></div>
-                </button>
-            </div>
-        </div>
-    </div>
 
 </body>
 
