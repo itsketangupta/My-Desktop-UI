@@ -19,7 +19,7 @@ I want to make a website has more and more Widgets so I made this website Widget
 - JavaScript
 
 ## About Me
-I am teen 13 class 8 student want to learn how to make games but started make website as Front-End-Devloper so lazy to writing
+I am teen 13 class 8 student want to learn how to make games but started make website as Front-End-Devloper and also so lazy to writing
 
 ##  Getting Started
 

@@ -276,10 +276,58 @@ li {
     gap: 70px;
 }
 
+@media screen and (max-width: 533px) {
+    .taskbar {
+        transform: scale(0.9);
+    }
+}
+
+@media screen and (max-width: 474px) {
+    .taskbar {
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (max-width: 372px) {
+    .main_box {
+        margin-bottom: 400px !important;
+    }
+
+    .taskbar {
+        transform: scale(0.6) !important;
+    }
+}
+
+@media screen and (max-width: 378px) {
+    .main_box {
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .taskbar {
+        transform: scale(0.7);
+    }
+
+    .main {
+        padding-bottom: 400px;
+    }
+}
+
 @media screen and (max-width: 1242px) {
 
-    .one_r {
+    .one_r,
+    .upper {
         display: flex;
+        flex-direction: column;
+        width: 300px;
+        justify-content: center;
+        margin-left: -25px !important;
+    }
+
+    .two_in_one {
+        margin-left: -15px !important;
+        margin-top: 75px !important;
     }
 
     .main_box {
@@ -287,7 +335,10 @@ li {
         flex-direction: column;
         align-items: center;
         gap: 30px;
-        padding-bottom: 300px;
+    }
+
+    .calculator {
+        margin-bottom: 100px !important;
     }
 }
 
@@ -343,4 +394,8 @@ button:hover {
 
 .clear {
     background: #ff4d4d;
+}
+
+.tablet_main {
+    display: none;
 }
